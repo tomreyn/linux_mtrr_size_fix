@@ -1,26 +1,22 @@
-# linux_mtrr_size_fix
-How to fix `mtrr_cleanup: can not find optimal value`
+# How to fix `mtrr_cleanup: can not find optimal value`
 
 On some systems, Linux will log `mtrr_cleanup: can not find optimal value` and ask you to `please specify mtrr_gran_size/mtrr_chunk_size`.
 This primarily happens on legacy BIOS booting systems with both CPU integrated and discrete graphics chipsets with muxless graphics switching ("Optimus").
 
-# Original article
-Adam Helbing had a nice article written up on how to fix this, originally published under CC-BY-NC-SA 3.0 license at http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html
+## Editors note
+Adam Helbing had a nice article written up on how to fix this, originally published on 2012-05-23 under CC-BY-NC-SA 3.0 license at http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html
 
-It is still available in Internet archives:
-* http://archive.vn/4xibn
-* http://web.archive.org/web/20190904223631/http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html
+This article is still available in Internet archives:
+* [Archive.today](http://archive.vn/4xibn)
+* [Internet Archive Wayback Machine](http://web.archive.org/web/20190904223631/http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html)
 
-To preserve this how-to and make it re-usable, Adam kindly re-licensed (or dual-licensed) it to me (and by me re-publishing it here, to you, too) under CC-BY-SA 4.0. Proof of this is available in this Git repository at [relicensing_proof/](relicensing_proof/) which also contains a copy of the original article.
+To preserve this how-to and make it re-usable, Adam kindly re-licensed it to me - Tom Reynolds (@tomreyn) - (and by me re-publishing it here, to you, too) under [Creative Commons Attribution Share-Alike 4.0 International (CC-BY-SA 4.0)](COPYING) license ([at CreativeCommons.org](https://creativecommons.org/licenses/by/4.0/)). Proof of relicensing is available in this Git repository at [relicensing_proof/](relicensing_proof/) which also contains a copy of the original article. Having access to the re-licensed copy available here, you are able and welcome to create derivative works (providing credit and not claiming endorsement on your derivative work - see the license deed for details).
 
-A copy of the original article, converted to Markdown, and with only minial changes (formatting, Wikipedia link, ortography) is available below. Since the comments published with the original article were useful to me, but they were contributions under the articles' original CC-BY-NC-SA 3.0 license, I have paraphrased them instead.
+A copy of the original article, converted to Markdown, with only minimal changes applied (formatting, Wikipedia link, ortography) is available below. Since the comments published with the original article were useful to me, but they were contributions under the articles' original CC-BY-NC-SA 3.0 license, I have paraphrased them instead.
 
-# How to fix `mtrr_cleanup: can not find optimal value`
-
-## Solving linux MTRR problems
-by Adam Helbing
-Originally published on 2012-05-23
-Licensed under CC-BY-SA 4.0
+# Solving linux MTRR problems
+> by Adam Helbing
+> Originally published on 2012-05-23
 
 If you find one or several of the following lines in your kernel message buffer, your system suffers from memory management problems:
 

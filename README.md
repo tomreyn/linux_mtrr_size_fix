@@ -4,19 +4,14 @@ On some systems, Linux will log `mtrr_cleanup: can not find optimal value` and a
 This primarily happens on legacy BIOS booting systems with both CPU integrated and discrete graphics chipsets with muxless graphics switching ("Optimus").
 
 ## Editors note
-Adam Helbing had a nice article written up on how to fix this, originally published on 2012-05-23 under CC-BY-NC-SA 3.0 license at http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html
+Adam Helbing had written a nice article on this topic, originally [published on his blog](http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html) on 2012-05-23 under CC-BY-NC-SA 3.0 license. This article is no longer available at the original location, but in Internet archives ([Archive.today](http://archive.vn/4xibn), [Internet Archive Wayback Machine](http://web.archive.org/web/20190904223631/http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html)).
 
-This article is still available in Internet archives:
-* [Archive.today](http://archive.vn/4xibn)
-* [Internet Archive Wayback Machine](http://web.archive.org/web/20190904223631/http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html)
+To preserve this article and make it re-usable, Adam kindly re-licensed it to me - Tom Reynolds -  under [CC-BY-SA 4.0](COPYING) license ([at CreativeCommons.org](https://creativecommons.org/licenses/by/4.0/)). [Proof of relicensing](relicensing_proof/) is available and contains a copy of the original article. By having access to the re-licensed copy available here, you are able and welcome to create derivative works (see the license deed for details).
 
-To preserve this how-to and make it re-usable, Adam kindly re-licensed it to me - Tom Reynolds (@tomreyn) - (and by me re-publishing it here, to you, too) under [Creative Commons Attribution Share-Alike 4.0 International (CC-BY-SA 4.0)](COPYING) license ([at CreativeCommons.org](https://creativecommons.org/licenses/by/4.0/)). Proof of relicensing is available in this Git repository at [relicensing_proof/](relicensing_proof/) which also contains a copy of the original article. Having access to the re-licensed copy available here, you are able and welcome to create derivative works (providing credit and not claiming endorsement on your derivative work - see the license deed for details).
+A copy of the original article, converted to Markdown, with only minimal changes applied (formatting, Wikipedia link, ortography) is available below. The comments published with the original article were useful to me, but were contributions under the articles' original CC-BY-NC-SA 3.0 license, so I have paraphrased them instead.
 
-A copy of the original article, converted to Markdown, with only minimal changes applied (formatting, Wikipedia link, ortography) is available below. Since the comments published with the original article were useful to me, but they were contributions under the articles' original CC-BY-NC-SA 3.0 license, I have paraphrased them instead.
-
-# Solving linux MTRR problems
+# Solving Linux MTRR problems
 > by Adam Helbing
-> Originally published on 2012-05-23
 
 If you find one or several of the following lines in your kernel message buffer, your system suffers from memory management problems:
 
@@ -34,7 +29,7 @@ Keep on reading for some background info and a few steps to solve that problem.
 [Memory Type Range Registers](https://en.wikipedia.org/wiki/Memory_type_range_register) are basically a table which tells the system how to cache which ranges of installed memory. It is set up by bios initially, but can be altered anytime by the OS if needed. Whenever you change the amount of memory installed or flash a new bios, a new mtrr table is computed. Here is a sane mtrr table from my Lenovo T400 notebook with 6 GiB of ram:
 
 ```
-fk ~ $ cat /proc/mtrr 
+$ cat /proc/mtrr 
 reg00: base=0x000000000 (    0MB), size= 2048MB, count=1: write-back
 reg01: base=0x080000000 ( 2048MB), size= 1024MB, count=1: write-back
 reg02: base=0x0bc000000 ( 3008MB), size=   64MB, count=1: uncachable
@@ -62,7 +57,7 @@ What happened? The drm module tried to grab a free mtrr to set up a write-combin
 Luckily, the kernel has some options to control mtrr setup:
 
 ```
-fk ~ $ gunzip < /proc/config.gz  | grep -i MTRR_SANITIZER
+$ gunzip < /proc/config.gz  | grep -i MTRR_SANITIZER
 CONFIG_MTRR_SANITIZER=y
 CONFIG_MTRR_SANITIZER_ENABLE_DEFAULT=0
 CONFIG_MTRR_SANITIZER_SPARE_REG_NR_DEFAULT=1

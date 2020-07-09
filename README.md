@@ -81,10 +81,12 @@ to your grub, syslinux, lilo, whatever kernel line and reboot to sanitize your m
 
 ## That's it?
 
-Propably yes. Just check the message buffer whether the "mtrr  allocation failed" message is gone and check your /proc/mtrr whether there is a write-combined area defined for the graphics. In my case, it still was not. Instead, I found these new lines:
+Propably yes. Just check the message buffer whether the "mtrr  allocation failed" message is gone and check your `/proc/mtrr` whether there is a write-combined area defined for the graphics. In my case, it still was not. Instead, I found these new lines:
 
+```
 mtrr_cleanup: can not find optimal value
 please specify mtrr_gran_size/mtrr_chunk_size
+```
 
 
 The sanitizer was not able to find an optimal mtrr setup, but he kindly printed a long list with possible setups for me into the buffer, here is just the relevant snippet, as that list is really long:
@@ -118,7 +120,11 @@ Now 24MiB of ram are gone, but my 3d workloads, which are basically webgl conten
 
 **Q:** *In the examples given in this article, you state that 6 MTRRs are required. How do you calculate this?*
 
-**A:** The `num_reg` value logged by Linux provides the MTRRs required: `gran_size: 32M chunk_size: 128M num_reg: 6 lose cover RAM: 30M`
+**A:** The `num_reg` value logged by Linux provides the MTRRs required:
+
+```
+gran_size: 32M chunk_size: 128M num_reg: 6 lose cover RAM: 30M
+```
 
 ---
 

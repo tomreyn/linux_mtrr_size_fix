@@ -81,7 +81,7 @@ to your grub, syslinux, lilo, whatever kernel line and reboot to sanitize your m
 
 ## That's it?
 
-Propably yes. Just check the message buffer whether the "mtrr  allocation failed" message is gone and check your `/proc/mtrr` whether there is a write-combined area defined for the graphics. In my case, it still was not. Instead, I found these new lines:
+Propably yes. Just check the message buffer whether the `mtrr allocation failed` message is gone and check your `/proc/mtrr` whether there is a write-combined area defined for the graphics. In my case, it still was not. Instead, I found these new lines:
 
 ```
 mtrr_cleanup: can not find optimal value

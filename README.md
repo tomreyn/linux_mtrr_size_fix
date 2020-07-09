@@ -4,14 +4,14 @@ On some systems, Linux will log `mtrr_cleanup: can not find optimal value` and a
 This primarily happens on legacy BIOS booting systems with both CPU integrated and discrete graphics chipsets with muxless graphics switching ("Optimus").
 
 ## Editors note
-Adam Helbing had written a nice article on this topic, originally [published on his blog](http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html) on 2012-05-23 under CC-BY-NC-SA 3.0 license. This article is no longer available at the original location, but in Internet archives ([Archive.today](http://archive.vn/4xibn), [Internet Archive Wayback Machine](http://web.archive.org/web/20190904223631/http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html)).
+Adam Helbing had written a nice article on this topic, originally [published on his blog](http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html) under CC-BY-NC-SA 3.0 license. It is no longer available at the original location but preserved in archives ([Archive.today](http://archive.vn/4xibn), [Internet Archive](http://web.archive.org/web/20190904223631/http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html)).
 
-To preserve this article and make it re-usable, Adam kindly re-licensed it to me - Tom Reynolds -  under [CC-BY-SA 4.0](COPYING) license ([at CreativeCommons.org](https://creativecommons.org/licenses/by/4.0/)). [Proof of relicensing](relicensing_proof/) is available and contains a copy of the original article. By having access to the re-licensed copy available here, you are able and welcome to create derivative works (see the license deed for details).
+Adam kindly [re-licensed](relicensing_proof/) it to me (Tom Reynolds) under the [CC-BY-SA 4.0](COPYING) license. You are welcome to create derivative works - see the [license deed](https://creativecommons.org/licenses/by/4.0/) for details.
 
-A copy of the original article, converted to Markdown, with only minimal changes applied (formatting, Wikipedia link, ortography) is available below. The comments published with the original article were useful to me, but were contributions under the articles' original CC-BY-NC-SA 3.0 license, so I have paraphrased them instead.
+A copy of the original article, converted to Markdown, with only minimal changes applied (formatting, Wikipedia link, ortography) is available below. Comments published with the original article were useful to me, but were contributions under the articles' original CC-BY-NC-SA 3.0 license. I have paraphrased them here to make them reusable under the new license.
 
 # Solving Linux MTRR problems
-> by Adam Helbing
+> by Adam Helbing (originally published on May 23, 2012)
 
 If you find one or several of the following lines in your kernel message buffer, your system suffers from memory management problems:
 

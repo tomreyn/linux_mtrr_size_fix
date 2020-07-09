@@ -1,10 +1,17 @@
 # How to fix `mtrr_cleanup: can not find optimal value`
 
-On some systems, Linux will log `mtrr_cleanup: can not find optimal value` and ask you to `please specify mtrr_gran_size/mtrr_chunk_size`.
-This primarily happens on legacy BIOS booting systems with both CPU integrated and discrete graphics chipsets with muxless graphics switching ("Optimus").
+On some systems, Linux will log this:
+
+```
+mtrr_cleanup: can not find optimal value
+...
+please specify mtrr_gran_size/mtrr_chunk_size
+```
+
+This primarily happens on legacy BIOS boot systems with both CPU integrated and discrete graphics chipsets with muxless graphics switching. Historically, this was mostly observed on x86 systems with Intel CPUs and integrated graphics, when combined with NVidia graphics cards ("Optimus"). Nowadays, this could also happen with AMD CPUs with integrated graphics (APU) and a separate, dedicated graphics card.
 
 ## Editors note
-Adam Helbing had written a nice article on this topic, originally [published on his blog](http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html) under CC-BY-NC-SA 3.0 license. It is no longer available at the original location but preserved in archives ([Archive.today](http://archive.vn/4xibn), [Internet Archive](http://web.archive.org/web/20190904223631/http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html)).
+Adam Helbing wrote a nice article on this topic, originally published [on his blog](http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html) under CC-BY-NC-SA 3.0 license. It is no longer available at the original location but preserved in archives ([Archive.today](http://archive.vn/4xibn), [Internet Archive](http://web.archive.org/web/20190904223631/http://my-fuzzy-logic.de/blog/index.php?/archives/41-Solving-linux-MTRR-problems.html)).
 
 Adam kindly [re-licensed](relicensing_proof/) it to me (Tom Reynolds) under the [CC-BY-SA 4.0](COPYING) license. You are welcome to create derivative works - see the [license deed](https://creativecommons.org/licenses/by/4.0/) for details.
 

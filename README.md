@@ -118,7 +118,7 @@ Now 24MiB of ram are gone, but my 3d workloads, which are basically webgl conten
 
 **Q:** *In the examples given in this article, you state that 6 MTRRs are required. How do you calculate this?*
 
-**A:** In this example, the `num_reg` line logged by Linux provides the MTRRs required: `gran_size: 32M chunk_size: 128M num_reg: 6 lose cover RAM: 30M`
+**A:** The `num_reg` value logged by Linux provides the MTRRs required: `gran_size: 32M chunk_size: 128M num_reg: 6 lose cover RAM: 30M`
 
 ---
 
@@ -136,6 +136,7 @@ reg05: base=0x200000000 ( 8192MB), size= 1024MB, count=1: write-back
 reg06: base=0x0bde00000 ( 3038MB), size= 2MB, count=1: uncachable
 ```
 
-**A:** In my experience, on computers with an Intel CPU with integrated graphics, when you examine how many MTRRs to set, one register needs to be left available for the Intel DRM (direct rendering module) driver (i915/i965). It will use it as write-back cache for onboard graphics memory.
+**A:** In my experience, on computers with an Intel CPU with integrated graphics, when you examine how many MTRRs to set, one register needs to be left available for the Intel DRM (direct rendering module) integrated graphics driver (i915/i965). It will use it as write-back cache for onboard graphics memory.
  
-Your CPU, just like the one in the article, supports 7 MTRRS (reg00 to reg06). So if you leave one for the integrated GPU, you can go with a 6 MTRR configuration, and `mtrr_spare_reg_nr=1`. While running with these settings, check the kernel log (dmesg / journalctl -k) to confirm whether the Intel DRM uses the leftover MTRR.
+Your CPU, just like the one in the article, supports 7 MTRRs (`reg00` to `reg06`). So if you leave one for the integrated GPU, you can go with a 6 MTRR configuration, and `mtrr_spare_reg_nr=1`. While running with these settings, check the kernel log (`dmesg`) to confirm whether the Intel DRM uses the leftover MTRR.
+
